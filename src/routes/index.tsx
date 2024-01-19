@@ -3,7 +3,9 @@ import { User } from '../db/schema'
 import type { ElysiaApp } from '../index'
 import { htmlRoute, userRoute } from '../route-utils'
 
-export default (app: ElysiaApp) => app.use(htmlRoute).use((app) => userRoute(app, false, false)).get('/', ({ user }: { user: User }) => (
+export default (app: ElysiaApp) => app.use(userRoute({
+    authorized: false,
+})).get('/', ({ user }) => (
     <main class="h-screen w-screen flex flex-col justify-center items-center gap-12">
         <h1 class="text-3xl font-bold">Hello World</h1>
         <form hx-post="/api/users/logout">

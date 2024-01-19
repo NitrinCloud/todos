@@ -17,7 +17,9 @@
     "drizzle-orm": "^0.29.3",
     "elysia": "^0.8.9",
     "elysia-autoroutes": "^0.5.0",
+    "elysia-compression": "^0.0.7",
     "elysia-htmx": "1.0.9",
+    "elysia-ip": "^0.0.6",
     "elysia-nocache": "^0.0.1",
     "elysia-tailwind": "1.0.9",
     "postgres": "^3.4.3"

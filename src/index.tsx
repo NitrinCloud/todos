@@ -1,19 +1,14 @@
 import cookie from "@elysiajs/cookie";
-import { html } from "@elysiajs/html";
 import jwt from "@elysiajs/jwt";
 import staticPlugin from "@elysiajs/static";
 import { Elysia } from "elysia";
 import { autoroutes } from "elysia-autoroutes";
-import { htmx } from "elysia-htmx";
-import { nocache } from "elysia-nocache";
+import { ip } from "elysia-ip";
 import { tailwind } from "elysia-tailwind";
 
 const app = new Elysia()
   .use(staticPlugin())
-  .use(html())
-  .use(htmx())
   .use(cookie())
-  .use(nocache)
   .use(tailwind({                           // 2. Use
     path: "/public/styles.css",       // 2.1 Where to serve the compiled stylesheet;
     source: "./src/styles/styles.css",        // 2.2 Specify source file path (where your @tailwind directives are);
@@ -33,6 +28,7 @@ const app = new Elysia()
     prefix: "", // -> optional, defaults to ''
     generateTags: false, // -> optional, defaults to true
   }))
+  .use(ip())
   .listen(3000);
 
 console.log(

@@ -3,8 +3,9 @@ import { ElysiaApp } from "../../..";
 import { db } from "../../../db";
 import { users } from "../../../db/schema";
 import { t } from "elysia";
+import { apiRoute } from "../../../route-utils";
 
-export default (app: ElysiaApp) => app.post("/", async ({ set, jwt, setCookie, body: { email, password }, hx }) => {
+export default (app: ElysiaApp) => app.use(apiRoute).post("/", async ({ set, jwt, setCookie, body: { email, password }, hx }) => {
     const user = (await db.select().from(users).where(eq(users.email, email)).limit(1))[0]
 
     if (!user || !(await Bun.password.verify(password, user.password))) {
